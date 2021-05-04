@@ -9,9 +9,13 @@ RUN sudo dnf install -y \
 	&& sudo rm -rf /var/cache/dnf
 
 RUN sudo dnf install -y \
-		chromium-freeworld \
+		dnf-plugins-core \
+		# chromium-freeworld \
 		# chromium-browser-privacy \
+	&& sudo dnf config-manager --set-enabled google-chrome \
+	&& sudo dnf install -y google-chrome-stable \
 	&& sudo dnf clean all \
 	&& sudo rm -rf /var/cache/dnf
 
-CMD ["/usr/bin/chromium-browser"]
+#CMD ["/usr/bin/chromium-browser"]
+CMD ["/usr/bin/google-chrome"]
